@@ -1,0 +1,15 @@
+Version 1.0 - 3 Dec. 1986 (256K, 640K, tape)
+ 1. Base version sent to Prentice-Hall.
+
+Version 1.1 - 7 Dec. 1986 (640K)
+ 1. New organization of disks 5-7.
+ 2. Bug in su fixed (it didn't TIOCGETP parameters).
+ 3. Bug in printer driver fixed (couldn't hack device busy).
+ 4. Bug in lpr fixed (didn't check write status).
+ 5. Zone numbers in mkfs printed in decimal instead of hex.
+ 6. Bad printout in rmdir fixed.
+ 7. Rmdir made suid root.
+ 8. Bug in tty driver fixed (cat followed by DEL failed).
+ 9. Bug concerning cat DEL fixed by calling do_unpause in FS/exit.
+10. Hard disk sizes changed from 32000 to 0
+11. Memory task now returns EOF on /dev/null.

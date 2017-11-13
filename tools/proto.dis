@@ -1,0 +1,78 @@
+boot
+360 95
+d--755 1 1
+   commands	d--755 2 1
+	ar.c      	---644 2 1 	../commands/ar.c      
+	basename.c	---644 2 1 	../commands/basename.c
+	cat.c     	---644 2 1 	../commands/cat.c     
+	cc.c      	---644 2 1 	../commands/cc.c      
+	chmem.c   	---644 2 1 	../commands/chmem.c   
+	chmod.c   	---644 2 1 	../commands/chmod.c   
+	chown.c   	---644 2 1 	../commands/chown.c   
+	clr.c     	---644 2 1 	../commands/clr.c     
+	cmp.c     	---644 2 1 	../commands/cmp.c     
+	comm.c    	---644 2 1 	../commands/comm.c    
+	cp.c      	---644 2 1 	../commands/cp.c      
+	date.c    	---644 2 1 	../commands/date.c    
+	dd.c      	---644 2 1 	../commands/dd.c      
+	df.c      	---644 2 1 	../commands/df.c      
+	dosread.c 	---644 2 1 	../commands/dosread.c 
+	echo.c    	---644 2 1 	../commands/echo.c    
+	getlf.c   	---644 2 1 	../commands/getlf.c   
+	grep.c    	---644 2 1 	../commands/grep.c    
+	gres.c    	---644 2 1 	../commands/gres.c    
+	head.c    	---644 2 1 	../commands/head.c    
+	kill.c    	---644 2 1 	../commands/kill.c    
+	libpack.c 	---644 2 1 	../commands/libpack.c 
+	libupack.c	---644 2 1 	../commands/libupack.c
+	ln.c      	---644 2 1 	../commands/ln.c      
+	lpr.c     	---644 2 1 	../commands/lpr.c     
+	ls.c      	---644 2 1 	../commands/ls.c      
+	make.c    	---644 2 1 	../commands/make.c    
+	mkdir.c   	---644 2 1 	../commands/mkdir.c   
+	mkfs.c    	---644 2 1 	../commands/mkfs.c    
+	mknod.c   	---644 2 1 	../commands/mknod.c   
+	mount.c   	---644 2 1 	../commands/mount.c   
+	mv.c      	---644 2 1 	../commands/mv.c      
+	od.c      	---644 2 1 	../commands/od.c      
+	passwd.c  	---644 2 1 	../commands/passwd.c  
+	pr.c      	---644 2 1 	../commands/pr.c      
+	pwd.c     	---644 2 1 	../commands/pwd.c     
+	rev.c     	---644 2 1 	../commands/rev.c     
+	rm.c      	---644 2 1 	../commands/rm.c      
+	rmdir.c   	---644 2 1 	../commands/rmdir.c   
+	roff.c    	---644 2 1 	../commands/roff.c    
+	run       	---644 2 1 	../commands/run       
+	shar.c    	---644 2 1 	../commands/shar.c    
+	size.c    	---644 2 1 	../commands/size.c    
+	sleep.c   	---644 2 1 	../commands/sleep.c   
+	sort.c    	---644 2 1 	../commands/sort.c    
+	split.c   	---644 2 1 	../commands/split.c   
+	stty.c    	---644 2 1 	../commands/stty.c    
+	su.c      	---644 2 1 	../commands/su.c      
+	sum.c     	---644 2 1 	../commands/sum.c     
+	sync.c    	---644 2 1 	../commands/sync.c    
+	tail.c    	---644 2 1 	../commands/tail.c    
+	tar.c     	---644 2 1 	../commands/tar.c     
+	tee.c     	---644 2 1 	../commands/tee.c     
+	time.c    	---644 2 1 	../commands/time.c    
+	touch.c   	---644 2 1 	../commands/touch.c   
+	tr.c      	---644 2 1 	../commands/tr.c      
+	umount.c  	---644 2 1 	../commands/umount.c  
+	uniq.c    	---644 2 1 	../commands/uniq.c    
+	update.c  	---644 2 1 	../commands/update.c  
+	wc.c      	---644 2 1 	../commands/wc.c      
+	changemem      	---644 2 1 	changemem      
+	bin	d--777 2 1
+	$
+	MINIX	d--777 2 1
+		makefile	---644 2 1 	../commands/MINIX/makefile
+	$
+	PCIX	d--777 2 1
+		makefile	---644 2 1 	../commands/makefile
+	$
+	C86	d--777 2 1
+		make.bat	---644 2 1	../commands/C86/make.bat
+	$
+   $
+$

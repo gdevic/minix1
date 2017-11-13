@@ -1,0 +1,5 @@
+main+proc+system+clock+memory+floppy+
+wini+tty+printer+table+klib88+dmp
+kernel
+kernel
+..\lib\mxc86

@@ -1,0 +1,209 @@
+echo "We will start out with housekeeping.  These may fail.  Don't worry"
+rm -rf copy
+mkdir copy
+mkdir /copy/bin
+mkdir /copy/lib
+mkdir /copy/ast
+mkdir /copy/include
+mkdir /copy/test
+mkdir /copy/doc
+mkdir /copy/commands
+mkdir /copy/MINIX
+mkdir /copy/PCIX
+mkdir /copy/C86
+rm /bin/cat
+rm /bin/cc
+rm /bin/kill
+rm /bin/ls
+rm /bin/mined
+rm /lib/cem
+rm /lib/cpp
+
+echo "Insert 360K disk 5 so include can be copied"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/include/* /copy/include
+/etc/umount /dev/at0
+
+echo "Insert 1.2M disk 5"
+getlf
+/etc/mount /dev/at0 /usr
+mkdir /usr/include
+mv /copy/include/* /usr/include
+/etc/umount /dev/at0
+
+echo "Insert 360K disk 7 so tools a-e can be copied"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/tools/MINIX/* /copy/MINIX
+cp /usr/tools/PCIX/* /copy/PCIX
+cp /usr/tools/C86/* /copy/C86
+cp /usr/tools/[a-e]* /copy/bin
+/etc/umount /dev/at0
+
+echo "Insert 1.2M disk 5"
+getlf
+/etc/mount /dev/at0 /usr
+mkdir /usr/tools
+mkdir /usr/tools/PCIX
+mkdir /usr/tools/MINIX
+mkdir /usr/tools/C86
+mkdir /usr/commands
+mkdir /usr/bin
+mkdir /usr/lib
+mv /copy/bin/* /usr/tools
+mv /copy/MINIX/* /usr/tools/MINIX
+mv /copy/PCIX/* /usr/tools/PCIX
+mv /copy/C86/* /usr/tools/C86
+rm -f /copy/bin/*
+/etc/umount /dev/at0
+
+echo "Insert 360K disk 7 (tools f-k)"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/tools/[f-k]* /copy/bin
+/etc/umount /dev/at0
+
+echo "Insert 1.2M disk 5"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/bin/* /usr/tools
+rm -f /copy/bin/*
+/etc/umount /dev/at0
+
+echo "Insert 360K disk 7 (tools l-k)"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/tools/[l-z]* /copy/bin
+/etc/umount /dev/at0
+
+echo "Insert 1.2M disk 5"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/bin/* /usr/tools
+rm -f /usr/tools/MINIX/makefile
+mv /etc/tools.make /usr/tools/MINIX/makefile
+rm -f /copy/bin/*
+/etc/umount /dev/at0
+echo "Tools copied.  Now start on commands"
+
+echo "Insert 360K disk 8 (commands a-f)"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/commands/MINIX/* /copy/MINIX
+cp /usr/commands/PCIX/* /copy/PCIX
+cp /usr/commands/C86/* /copy/C86
+cp /usr/commands/[a-f]* /copy/bin
+/etc/umount /dev/at0
+
+echo "Insert 1.2M disk 5"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/bin/* /usr/commands
+mv /copy/MINIX/* /usr/commands/MINIX
+mv /copy/PCIX/* /usr/commands/PCIX
+mv /copy/C86/* /usr/commands/C86
+rm -f /copy/bin/*
+/etc/umount /dev/at0
+
+echo "Insert 360K disk 8 (commands g-r)"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/commands/[g-r]* /copy/bin
+/etc/umount /dev/at0
+
+echo "Insert 1.2M disk 5"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/bin/* /usr/commands
+rm -f /copy/bin/*
+/etc/umount /dev/at0
+
+echo "Insert 360K disk 8 (commands s-z)"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/commands/[s-z]* /copy/bin
+/etc/umount /dev/at0
+
+echo "Insert 1.2M disk 5"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/bin/* /usr/commands
+rm -f /copy/bin/*
+/etc/umount /dev/at0
+echo "Commands copied"
+
+echo "Insert the 1.2M /usr disk so we can fetch some programs from bin"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/bin/asld /copy/bin
+cp /usr/bin/cat /copy/bin
+cp /usr/bin/cc /copy/bin
+cp /usr/bin/dd /copy/bin
+cp /usr/bin/df /copy/bin
+cp /usr/bin/echo /copy/bin
+cp /usr/bin/ls /copy/bin
+cp /usr/bin/make /copy/bin
+cp /usr/bin/mined /copy/bin
+cp /usr/bin/mkdir /copy/bin
+cp /usr/bin/mv /copy/bin
+cp /usr/bin/pwd /copy/bin
+cp /usr/bin/rm /copy/bin
+cp /usr/bin/rmdir /copy/bin
+/etc/umount /dev/at0
+
+echo "Insert 1.2M disk 5"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/bin/* /usr/bin
+rm -f /copy/bin/*
+/etc/umount /dev/at0
+
+echo "Insert 1.2M /usr diskette again so we can fetch cem and cpp"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/lib/cem /copy/bin
+cp /usr/lib/cpp /copy/bin
+/etc/umount /dev/at0
+
+echo "Insert 1.2M disk 5"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/bin/* /usr/lib
+/etc/umount /dev/at0
+
+
+echo "Insert 1.2M /usr diskette again so we can fetch stuff from lib"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/lib/libc.a /copy/bin
+cp /usr/lib/*.s /copy/bin
+cp /usr/lib/cpp /copy/bin
+cp /usr/lib/opt /copy/bin
+cp /usr/lib/cg /copy/bin
+/etc/umount /dev/at0
+
+echo "Insert 1.2M disk 5 again, for the last time"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/bin/* /usr/lib
+/etc/umount /dev/at0
+echo "1.2M source 2 is now finished"
+
+echo "Now we will create 1.2M boot diskette.  Insert boot diskette"
+getlf
+dd if=/dev/at0 of=/boot count=240
+echo "Now insert blank 1.2M diskette on which boot will be put"
+getlf
+dd if=/boot of=/dev/at0
+rm /boot
+
+echo "Now we will copy the at.root file system from 360K to 1.2M"
+echo "Insert 360K at.root (120K RAM disk)"
+getlf
+dd if=/dev/at0 of=/root count=300
+echo "Insert 1.2M blank disk for root fs"
+getlf
+dd if=/root of=/dev/at0
+rm /root
+echo "All done!"

@@ -1,0 +1,5 @@
+The sources to the library are contained in an archive to save disk space.
+Since MINIX uses a minimum of 1K for each file, no matter how small,
+the sources take up less space when packed together in an archive.  To
+extract them, make sure there is at least 120K of free disk space, and type:
+	ar xv libsrc.a

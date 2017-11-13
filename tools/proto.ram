@@ -1,0 +1,54 @@
+boot
+240 95
+d--777 2 1
+   bin	d--755 2 1
+	cat	---755 2 1 ../commands/bin/cat
+	cc	---755 2 1 ../commands/bin/cc
+	cp	---755 2 1 ../commands/bin/cp
+	getlf	---755 2 1 ../commands/bin/getlf
+	kill	---755 2 1 ../commands/bin/kill
+	ls	---755 2 1 ../commands/bin/ls
+	mkdir	-u-755 0 1 ../commands/bin/mkdir
+	mined	---755 2 1 ../commands/bin/mined
+	rm	---755 2 1 ../commands/bin/rm
+	sh	---755 2 1 ../commands/bin/sh
+	sync	---755 2 1 ../commands/bin/sync
+   $
+   dev	d--755 2 1
+	ram	b--640 2 1 1 0 640
+	mem	b--640 2 1 1 1 640
+	kmem	b--640 2 1 1 2 640
+	null	b--666 2 1 1 3 0
+	fd0	b--666 2 1 2 0 360
+	fd1	b--666 2 1 2 1 360
+	at0	b--666 2 1 2 0 1200
+	at1	b--666 2 1 2 1 1200
+	hd0	b--600 2 1 3 0 0
+	hd1	b--600 2 1 3 1 0
+	hd2	b--600 2 1 3 2 0
+	hd3	b--600 2 1 3 3 0
+	hd4	b--600 2 1 3 4 0
+	tty0	c--666 2 1 4 0
+	tty	c--666 2 1 5 0
+	lp	c--222 2 1 6 0
+   $
+   etc	d--755 2 1
+	mount	-u-755 0 1 ../commands/bin/mount
+	umount	-u-755 0 1 ../commands/bin/umount
+	update	---755 2 1 ../commands/bin/update
+	passwd	---644 2 1 passwd
+	rc	---644 2 1 rc
+	message	---644 2 1 message
+	ttys	---644 2 1 ttys
+   $
+   lib	d--755 2 1
+	cpp	---755 2 1 ../commands/bin/cpp
+	cem	---755 2 1 ../commands/bin/cem
+   $
+   tmp	d--777 2 1
+   $
+   user	d--755 2 1
+   $
+   usr	d--755 2 1
+   $
+$

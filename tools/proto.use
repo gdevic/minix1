@@ -1,0 +1,64 @@
+boot
+360 127
+d--755 1 1
+   ast	d--755 8 3
+	.profile	---644 8 3 profile
+   $
+   bin	d--755 2 1
+	gres	---755 2 1	../commands/bin/gres
+	rev	---755 2 1	../commands/bin/rev
+	roff	---755 2 1	../commands/bin/roff
+	shar	---755 2 1	../commands/bin/shar
+	tar	---755 2 1	../commands/bin/tar
+   $
+   test	d--777 2 1
+	test0	-u-755 0 1	../test/test0
+	test1	-u-755 0 1	../test/test1
+	test2	-u-755 0 1	../test/test2
+	test3	-u-755 0 1	../test/test3
+	test4	-u-755 0 1	../test/test4
+	test5	-u-755 0 1	../test/test5
+	test6	-u-755 0 1	../test/test6
+	test7	-u-755 0 1	../test/test7
+	test8	-u-755 0 1	../test/test8
+	test9	-u-755 0 1	../test/test9
+	test10	-u-755 0 1	../test/test10
+	t10a	-u-755 0 1	../test/t10a
+	test11	-u-755 0 1	../test/test11
+	t11a	-u-755 0 1	../test/t11a
+	t11b	-u-755 0 1	../test/t11b
+	test0.c	---644 2 1	../test/test0.c
+	test1.c	---644 2 1	../test/test1.c
+	test2.c	---644 2 1	../test/test2.c
+	test3.c	---644 2 1	../test/test3.c
+	test4.c	---644 2 1	../test/test4.c
+	test5.c	---644 2 1	../test/test5.c
+	test6.c	---644 2 1	../test/test6.c
+	test7.c	---644 2 1	../test/test7.c
+	test8.c	---644 2 1	../test/test8.c
+	test9.c	---644 2 1	../test/test9.c
+	test10.c ---644 2 1	../test/test10.c
+	t10a.c	---644 2 1	../test/t10a.c
+	test11.c ---644 2 1	../test/test11.c
+	t11a.c	---644 2 1	../test/t11a.c
+	t11b.c	---644 2 1	../test/t11b.c
+	run	---755 2 1	../test/run
+	MINIX	d--755 2 1	../test/MINIX
+		makefile	---644 2 1	../test/MINIX/makefile
+	$
+   $
+   commands	d--755 2 1
+	mined.h ---644 2 1	../include/mined.h
+	mined1.c ---644 2 1	../commands/mined1.c
+	mined2.c ---644 2 1	../commands/mined2.c
+	sh.h  ---644 2 1	../include/sh.h
+	sh1.c ---644 2 1	../commands/sh1.c
+	sh2.c ---644 2 1	../commands/sh2.c
+	sh3.c ---644 2 1	../commands/sh3.c
+	sh4.c ---644 2 1	../commands/sh4.c
+	sh5.c ---644 2 1	../commands/sh5.c
+   $
+   doc	d--755 2 1
+	READ_ME	---644 2 1	../doc/READ_ME
+   $
+$

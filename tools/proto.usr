@@ -1,0 +1,71 @@
+boot
+360 95
+d--755 1 1
+   ast	d--755 8 3
+	.profile	---644 8 3 profile
+   $
+   bin	d--755 2 1
+	ar	---755 2 1 ../commands/bin/ar
+	asld	---755 2 1 ../commands/bin/asld
+	basename ---755 2 1 ../commands/bin/basename
+	chmem	---755 2 1 ../commands/bin/chmem
+	chmod	---755 2 1 ../commands/bin/chmod
+	chown	---755 2 1 ../commands/bin/chown
+	clr	---755 2 1 ../commands/bin/clr
+	cmp	---755 2 1 ../commands/bin/cmp
+	comm	---755 2 1 ../commands/bin/comm
+	date	---755 2 1 ../commands/bin/date
+	dd	---755 2 1 ../commands/bin/dd
+	df	-u-755 0 1 ../commands/bin/df
+	dosread	---755 2 1 ../commands/bin/dosread
+	echo	---755 2 1 ../commands/bin/echo
+	grep	---755 2 1 ../commands/bin/grep
+	head	---755 2 1 ../commands/bin/head
+	libpack	---755 2 1 ../commands/bin/libpack
+	libupack ---755 2 1 ../commands/bin/libupack
+	ln	---755 2 1 ../commands/bin/ln
+	login	---755 2 1 ../commands/bin/login
+	lpr	---755 2 1 ../commands/bin/lpr
+	make	---755 2 1 ../commands/bin/make
+	mkfs	---755 2 1 ../commands/bin/mkfs
+	mknod	---755 2 1 ../commands/bin/mknod
+	mv	---755 2 1 ../commands/bin/mv
+	od	---755 2 1 ../commands/bin/od
+	passwd	-u-755 0 1 ../commands/bin/passwd
+	pr	---755 2 1 ../commands/bin/pr
+	pwd	---755 2 1 ../commands/bin/pwd
+	rmdir	-u-755 0 1 ../commands/bin/rmdir
+	size	---755 2 1 ../commands/bin/size
+	sleep	---755 2 1 ../commands/bin/sleep
+	sort	---755 2 1 ../commands/bin/sort
+	split	---755 2 1 ../commands/bin/split
+	stty	---755 2 1 ../commands/bin/stty
+	su	-u-755 0 1 ../commands/bin/su
+	sum	---755 2 1 ../commands/bin/sum
+	tail	---755 2 1 ../commands/bin/tail
+	tee	---755 2 1 ../commands/bin/tee
+	time	---755 2 1 ../commands/bin/time
+	touch	---755 2 1 ../commands/bin/touch
+	tr	---755 2 1 ../commands/bin/tr
+	true	---755 2 1 ../commands/bin/true
+	uniq	---755 2 1 ../commands/bin/uniq
+	wc	---755 2 1 ../commands/bin/wc
+   $
+   include	d--755 2 1
+	blocksize.h	---644 2 1 ../include/blocksize.h
+	errno.h		---644 2 1 ../include/errno.h
+	sgtty.h		---644 2 1 ../include/sgtty.h
+	signal.h	---644 2 1 ../include/signal.h
+	stat.h		---644 2 1 ../include/stat.h
+	setjmp.h	---644 2 1 ../include/setjmp.h
+	stdio.h		---644 2 1 ../include/stdio.h
+   $
+   lib	d--755 2 1
+	cg	---755 2 1 ../commands/bin/cg
+	opt	---755 2 1 ../commands/bin/opt
+	crtso.s	---755 2 1 ../lib/MINIX/crtso.s
+	end.s	---755 2 1 ../lib/MINIX/end.s
+	head.s	---755 2 1 ../lib/MINIX/head.s
+	libc.a	---755 2 1 ../commands/bin/libc.a
+   $
+$

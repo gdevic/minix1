@@ -1,0 +1,255 @@
+The book went to press before the software, so last-minute changes are noted
+here.  In particular, after the book went to press, the software was ported
+to the PC/AT and various PC clones, which necessitated some minor patches
+here and there.
+
+ 1. GENERAL
+       There were a number of minor changes made to the code after the book
+    was printed, as mentioned above.  As a result, line X of file Y in the  
+    book may actually appear at X+3, or X-5, etc. on the disk version.
+
+ 2. HARD DISK
+       MINIX supports the use of the standard IBM hard disk.  To use a
+    hard disk with MINIX, you need one or more MINIX partitions.  You may
+    also have MS-DOS, PC-IX, XENIX, or other partitions as well if you like.
+    If you have a version of FDISK that is able to make several partitions,
+    do so, reserving one for MINIX.  If not, you can make several partitions
+    as follows:
+	1. Backup all the files on the entire hard disk to floppies.
+	2. Run FDISK to delete all partitions and make a partition for MINIX.
+	3. Run diskfix (see below) to mark the new partition as type MINIX.
+	4. Run FDISK to make a new MS-DOS partition (optional).
+	5. Restore the files on the MS-DOS partition.
+	6. Boot MINIX and make a MINIX file system on its partition (see below).
+    The basic problem with MS-DOS FDISK is that it can only make one MS-DOS
+    partition and nothing else.  It is not very flexible.  Therefore diskfix
+    is needed to mark the one partition as non-DOS, so that FDISK will be
+    willing to make another one.  Diskfix.asm is a MASM (assembly code) program
+    located in the MINIX tools source directory.  Copy it to an MS-DOS disk
+    using doswrite, then assemble it.  When it runs, it reads in the partition
+    table, changes all partitions to non-DOS type, and writes it back.
+       Once you have a partition available for MINIX (the type does not matter
+    as MINIX does not check), make a file system by booting MINIX from floppy
+    the usual way and run mkfs.  If, for example, you have chosen partition 2,
+    which has, say, 40 cylinders (i.e., 40 x 68 = 2720 sectors or 1360 1K
+    blocks), type: 
+	mkfs /dev/hd2 1360
+    to make an empty file system.  However, for partition 1 use 1 block less
+    because block 0 is not available (it contains the MS-DOS partition table).
+    In other words, a 40 cylinder partition 1 has 1359 blocks but a 40 cylinder
+    partition 2 or higher has 1360 blocks. Then mount the file system by typing:
+    	/etc/mount /dev/hd2 /user
+    Next, make whatever directories you like, typically bin, lib, and others,
+    and copy files to the hard disk.  With the /usr floppy in drive 0, the
+    command 
+    	cp /usr/bin/* /user/bin
+    will copy all the binaries from /usr/bin to the hard disk, for example.
+       Finally, edit /etc/rc to have the hard disk mounted when the system
+    is booted.  A line such as
+    	/etc/mount /dev/hd2 /usr
+    can be used as a replacement for the mount command initially in /etc/rc.
+    After editing /etc/rc, mount the root file system diskette and copy it
+    to the diskette; otherwise the changes will be lost when the system is
+    rebooted.  (There is nothing special about the root file system except
+    its size; it can be mounted and written on like any other file system.)
+       After these steps have been taken, the system can be booted from
+    floppy in the usual way, and the root file system also read in from
+    floppy.  The hard disk will automatically be mounted by the /etc/rc.
+    The root device remains on the RAM disk, and the boot process still
+    goes via floppy (for compatibility and to prevent disaster in the event
+    that something goes wrong with the hard disk file system).  Hard disk
+    file systems can be checked using fsck by typing 'x' or 'a' when the 
+    initial menu is display.
+       The special file /dev/hd0 refers to the whole disk, without regard to
+    partitions, whereas /dev/hd1 ... /dev/hd4 refer to partitions 1 to 4.  If
+    you have a second hard disk, you can make /dev/hd5 ... /dev/hd9 with mknod
+    (major device 3, minor device 5 ... 9) for the second drive, with hd5 for
+    the whole drive, hd6 for partition 1, etc.  Fsck also uses this convention.
+       The MINIX program mkfs writes a file system on whatever partition you
+    tell it to.  If you tell it to use partition 2, it does. Consequently, a
+    typing error here can result in erasing all your files. (In MS-DOS typing
+    del *.c instead of del *.o will remove all the sources instead of all the
+    object files.)  Therefore, it is strongly recommended that you back up
+    your entire hard disk before installing MINIX.  Better safe than sorry.
+       Many hard disks are used on IBM PCs, XTs, and ATs.  Each one needs a
+    different driver.  The files xt_wini.c and at_wini.c are drivers for the
+    standard IBM XT and AT disks respectively.  Their drivers are totally
+    different.  When generating a new system, you must copy the appropriate
+    driver to the file wini.c (in the kernel directory) depending on whether
+    you have a PC or XT (use xt_wini.c) or an AT (use at_wini.c).  You MUST
+    choose one of these drivers even if you have no hard disk at all.
+
+ 3. PC/AT
+       The distribution for the PC/AT differs from that for the PC in minor
+    ways.  For example, there is no /user diskette.  All the files that would
+    normally be on /user fit on /usr.  Furthermore, the number and organization
+    of the source diskettes is different, but the same programs are available.
+    Source diskette 1 has been arranged so that it can be mounted and you can
+    change to the kernel, mm, or fs directory, and just type make to compile.
+    Two additional special files are present in /dev: /dev/at0 and /dev/at1.
+    These should be used to access 1.2M diskettes.  To access 360K diskettes
+    on the PC/AT, use /dev/fd0 and /dev/fd1.  Special files are used by
+    commands such as mount, mkfs, and df, among others.  For example, to
+    copy part of a 1.2M diskette, type dd if=/dev/at0 of=file count=100.
+    The difference between /dev/at0 and /dev/fd0 is that in MINIX, special
+    files have sizes to prevent access beyond the end.  For /dev/fd0 the
+    size is 360K.  For /dev/at0 it is 1.2M.
+
+  4. USING MS-DOS AS A DEVELOPMENT SYSTEM
+       The conversion of MINIX to make it possible to use MS-DOS as the
+     development system was done by Paul Ogilvie.  It was done in order to
+     to provide some assistance to people who wish to modify MINIX but
+     are unable to use MINIX or UNIX for that purpose. MS-DOS definitely should
+     be regarded as the method of last resort, only used if there is no other
+     alternative.  The assembly code files and batch files provided have all
+     been tested with the Computer Innovations C86 compiler, release 2.4, and
+     specific versions of the linker etc.  The use of any other compiler or
+     configuration is virtually guaranteed not to work the first time because
+     every MS-DOS C compiler is different, their libraries are different, etc.
+     MS-DOS users must approach this project with the expectation that minor
+     problems will arise and small patches to the code may be needed to work
+     around bugs and deficiencies that abound with MS-DOS compilers.  When
+     problems appear with files that are different for MS-DOS and MINIX, 
+     check the MINIX version, since these have been tested much more 
+     thoroughly than the MS-DOS versions.
+
+  5. BUGS in MS-DOS
+        Some machines and/or versions of MS-DOS have a bug when doing absolute 
+     diskio, as used by mkfs and build. This bug will manifest itself by 
+     creating an unbootable disk, saying  a file-system is bad, or sometimes 
+     the program will just hang.  The primary remedy if your machine suffers 
+     from this bug is to first format the disk. A permanent remedy is to 
+     change the module "diskio.asm" to use bios I/O calls instead of using the 
+     DOS interrupts 25 and 26 (see fsck1.asm). Disadvantage of the latter is 
+     that you cannot extend these programs anymore to work on a hard disk (e.g. 
+     making a MINIX filesystem on a hard disk).
+        Though the cause is not clear, it is assumed that these DOS system calls 
+     don't know if they should read/write an 8 sector per track diskette or a 9
+     sector per track diskette. Formatting the disk will make clear to DOS that 
+     they should do 9 sectors per track.  MINIX does not support 8 sectors per
+     track at all.
+
+  6. BATCH FILES in MS-DOS
+        The batch jobs are all made for a system with a hard disk. 
+     Depending on your floppy configuration you can modify them to ask for the 
+     necessary diskettes.  When linking, the jobs expect a directory \lib\c86
+     where they can find the DOS-library for C86 (the C86s2s library for small 
+     model, DOS-2, software floating point).  In any event, all MS-DOS users
+     should carefully inspect all the batch files before using them.
+        In DOS version 2.x, the 'echo'-command behaves somewhat different
+     than in DOS version 3.x.  The difference is is how to echo a new line to 
+     the screen. With Dos-2 you can do this by appending three spaces to the 
+     command, e.g. 'echo   ' and with Dos-3 you can do this by the command
+     'echo/'. Unfortunately both things aren't documented and are not compatible 
+     and will just say "ECHO is on" (or off).  Appart from clobbering your 
+     screen nothing is wrong. The batch files on this disk are for DOS version 3.
+
+ 7. MS-DOS ASSEMBLER
+       The Microsoft masm manual is not very clear about when you must use 
+    group-directives. The files included in this distribution work, but in
+    general, be careful.
+
+ 8. STATIC DECLARATIONS
+       The MINIX C compiler puts static variables in the data segment, not
+    the bss segment.  This increases the size of the a.out file on the disk.
+    Thus it is better to avoid declaring large arrays as static.  Futhermore,
+    because the assembler reads all the .s files at once, the use of static
+    to make it possible to re-use the same name in two files does not work.
+    All global names must be unique. Thus putting static x; in two files will 
+    not work.
+
+ 9. MAKING MINIX ON PC/AT
+       The book says that you should put each directory (kernel, mm, fs, etc.)
+    on a separate diskette.  With the 1.2M diskettes, you can keep kernel,
+    mm and fs on the same diskette, provided that you remove all the irrelevant
+    files (such as library sources), and avoid unnecessary files. Hard disk too.
+       When making MINIX on a PC/AT with one floppy disk drive, you will have
+    to put the image file on the same diskette as build.  The trick is then
+    to get it onto the boot diskette, starting at block 0.  The only way is
+    first to build a new root file system containing an almost empty RAM disk
+    of about 200K.  Construct a proto file for mkfs containing in bin: sh, cp,
+    sync, and getlf, as well as etc with mount, umount, passwd, rc, ttys, and
+    message.  The dev directory should contain the usual files.  An empty usr
+    directory is also needed.  Once you have the image file in tools and the
+    new root file system, proceed as follow.
+       1. Shut down the system.
+       2. Reboot MINIX, using the almost empty 200K file system.
+       3. Mount the diskette containing tools on /usr.
+       4. Copy image to /.
+       5. Unmount the tools diskette.
+       6. Insert a blank diskette.
+       7. Copy /image to /dev/at0.
+   This diskette is your new boot diskette.
+
+10. MOVING MINIX SOURCES TO NON-MINIX SYSTEMS
+       The source disks are distributed as MINIX file systems, ready to mount.
+    To read them under MS-DOS or PC-IX they must first be converted.
+    To move the MINIX sources to some other system on a computer with only
+    one floppy disk drive, first remove as many files as possible from the
+    RAM disk, and copy the files to be moved to the RAM disk.  Then insert
+    a diskette and copy the files to the diskette.  One possibility is using
+    doswrite.  Another is to make a shar archive and write it directly on
+    /dev/fd0.  This can then be copied byte for byte to another system and
+    unpacked with the shell.  Alternatively, ar.c can first be copied to a
+    diskette all by itself to get it to another machine, where it can be
+    compiled.  Subsequent files can be transferred in ar format.  On a computer
+    with two disk drives, both the MINIX and "foreign" file system can be
+    present at once.
+
+11. EDITING LARGE PROGRAMS WITH MINED
+       Mined has a limit on the size of programs it can edit.  To edit
+    larger ones, they must be broken up with split, edited separately and
+    recombined later.  If a file is too large, mined will issue an error
+    message and exit.
+
+12. MKNOD
+       MINIX differs from UNIX in that block special files (and even some
+    character special files, such as /dev/kmem) can have sizes.  A 360K floppy
+    disk special file, such as /dev/fd0 can have size 360K.  Unfortunately, the
+    mknod system call (and mknod program) have no way to express the size,
+    so it uses size 0, which is equal to infinity.  When you read past the
+    end of a block special file WITH a size, the file system returns zero
+    bytes.  When you go off the end of a device WITHOUT a size, some drivers
+    return end-of-file (e.g., hard disk, RAM disk), but others (e.g., floppy
+    disk) return an I/O error code.  Thus if you make a new block special file
+    for 2/0 and 2/1 (floppy disk) with mknod (i.e., no size) the command
+	cp /dev/fd0 /dev/fd1
+    will terminate with an error on block 360 (but it will copy the disk
+    perfectly).  The only way to make a special file with a size is by making 
+    a file system with mkfs.
+
+13. NONEXISTENT DEVICES
+       If you try to open /dev/fd1 on a system with only one floppy disk drive,
+    the system may hang.  To avoid this problem, the first time you log in, go
+    to the /dev directory, and rename special files that you do not have to
+    something unusual.  For example, if you do not have a hard disk, rename
+    hd0 to HARD_DISK_0, hd1 to HARD_DISK_1, etc.  Similarly with one one floppy
+    disk, rename fd1 to FLOPPY_DISK_1 to prevent it being typed by accident.
+    You can also remove them, but due to the mknod problem described above, you
+    can not get them back easily, so it is best just to get them out of the 
+    way in case you ever need them again later.
+
+14. PRINTER
+       In order to accommodate buffered and unbuffered printers, the printer
+   driver uses a combination of delay loops and interrupts.  The net result
+   is that the driver consumes a fair number of CPU cyles when running.  If you
+   expect to do a lot of printing, you might want to consider rewriting the
+   printer interrupt handler, pr_char, in assembly code.
+
+
+15. DISK SPACE
+       The /usr disk as distributed is entirely full.  If you have two floppy
+   disk drives, be sure to mount /user on drive 1 and move your working
+   directory there.  If you have only 1 floppy disk drive, remove some files
+   from /usr/bin to make more space.
+
+16. RUNNING /USER TESTS
+       Before running the tests in /user/test, remove the files in 
+   /user/commands to create some free space on the disk.
+
+17. 8086 TIMING PROBLEMS
+       There may be some weird (timing?) problems on PC clones using 8086 chips.
+   This seems strange, because on the IBM PC-AT everything works perfectly.  If
+   anyone can find the cause of the problems (or for that matter, any other
+   problems) let me know via Prentice-Hall or comp.os.minix (news) or
+   minix@cs.vu.nl (mail).

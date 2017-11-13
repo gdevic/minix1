@@ -1,0 +1,8 @@
+for i in *.s
+do as -o `basename $i .s`.o $i
+done
+for i in *.c
+do cc -c -O $i
+done
+ar r lib.a `lorder *.o | tsort 2>/dev/null`
+echo "lib.a done."

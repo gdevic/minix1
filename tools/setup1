@@ -1,0 +1,136 @@
+/etc/umount /dev/at0
+cd /
+
+echo If you have not run the following 4 commands, kill this job and do it.
+echo If you have, hit RETURN to continue:
+echo "
+
+mkfs /dev/at0 /etc/proto.at.root	{1.2M root file system}
+mkfs /dev/at0 1200			{1.2M /usr}
+mkfs /dev/at0 1200			{1.2M disk1}
+mkfs /dev/at0 1200			{1.2M disk2}
+
+"
+getlf
+echo "Now we will make the 1.2M /usr + /user file system"
+echo "Insert 1.2M /usr diskette and hit RETURN"
+getlf
+/etc/mount /dev/at0 /usr
+mkdir /usr/ast
+chown ast /usr/ast
+rm /bin/chown
+mkdir /usr/bin
+mkdir /usr/include
+mkdir /usr/lib
+mkdir /usr/doc
+mkdir /usr/test
+mkdir /usr/commands
+mv /bin/cat /usr/bin
+mv /bin/cc /usr/bin
+mv /bin/kill /usr/bin
+mv /bin/ls /usr/bin
+cp /bin/mkdir /usr/bin
+mv /bin/mkfs /usr/bin
+mv /bin/mined /usr/bin
+cp /bin/rm /usr/bin
+mv /lib/cpp /usr/lib
+mv /lib/cem /usr/lib
+echo "After moving mined, cpp, cem etc to /usr, ram disk space:"
+df /dev/ram
+/etc/umount /dev/at0
+
+echo "Insert 360K /usr diskette and hit RETURN"
+getlf
+/etc/mount /dev/at0 /usr
+mkdir copy
+mkdir /copy/bin
+mkdir /copy/lib
+mkdir /copy/ast
+mkdir /copy/include
+mkdir /copy/test
+mkdir /copy/doc
+mkdir /copy/commands
+mkdir /copy/MINIX
+mkdir /copy/PCIX
+mkdir /copy/C86
+cp /usr/lib/* /copy/lib
+cp /usr/include/* /copy/include
+cp /usr/ast/* /copy/ast
+/etc/umount /dev/at0
+
+echo "Insert 1.2M /usr diskette"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/ast/* /usr/ast
+mv /copy/include/* /usr/include
+mv /copy/lib/* /usr/lib
+/etc/umount /dev/at0
+
+echo "Insert 360K /usr diskette and hit RETURN"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/bin/[a-l]* /copy/bin
+/etc/umount /dev/at0
+
+echo "Insert 1.2M /usr diskette and hit RETURN"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/bin/* /usr/bin
+rm -f /copy/bin/*
+/etc/umount /dev/at0
+
+echo "Insert 360K /usr diskette and hit RETURN"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/bin/[m-z]* /copy/bin
+/etc/umount /dev/at0
+
+echo "Insert 1.2M /usr diskette and hit RETURN"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/bin/* /usr/bin
+rm -f /copy/bin/*
+/etc/umount /dev/at0
+
+echo "==================IMPORTANT NOTICE BELOW ====================="
+echo "/usr has been copied.  Insert 360K  /user  and hit RETURN"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/bin/* /copy/bin
+cp /usr/doc/* /copy/doc
+/etc/umount /dev/at0
+
+echo "Insert 1.2M /usr diskette and hit RETURN"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/bin/* /usr/bin
+mv /copy/doc/* /usr/doc
+rm -f /copy/bin/*
+/etc/umount /dev/at0
+
+echo "Insert 360K /user diskette"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/commands/* /copy/commands
+/etc/umount /dev/at0
+
+echo "Insert 1.2M /usr diskette and hit RETURN"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/commands/* /usr/commands
+rm -f /copy/commands/*
+/etc/umount /dev/at0
+
+echo "Insert 360K /user diskette and hit RETURN"
+getlf
+/etc/mount /dev/at0 /usr
+cp /usr/test/* /copy/test
+/etc/umount /dev/fd0
+
+echo "Insert 1.2M /usr diskette and hit RETURN"
+getlf
+/etc/mount /dev/at0 /usr
+mv /copy/test/* /usr/test
+echo "1.2M /usr diskette is now complete."
+/etc/umount /dev/at0
+

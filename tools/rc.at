@@ -1,0 +1,5 @@
+/bin/getlf "Please insert /usr diskette in drive 0.  Then hit RETURN."
+/etc/mount /dev/at0 /usr
+/usr/bin/date -q </dev/tty
+cat /etc/message
+/etc/update  &
